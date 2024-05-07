@@ -26,87 +26,50 @@ RegisterNumber:212223220109
 */
 ```
 ```
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.metrics import mean_absolute_error,mean_squared_error
-df=pd.read_csv('student_scores.csv')
-print(df)
-df.head(0)
-df.tail(0)
-print(df.head())
-print(df.tail())
-x = df.iloc[:,:-1].values
-print(x)
-y = df.iloc[:,1].values
-print(y)
+df=pd.read_csv('student.csv')
+df.head(10)
+plt.scatter(df['X'],df['Y'])
+plt.xlabel('X')
+plt.ylabel('Y')
+x=df.iloc[:,0:-1]
+y=df.iloc[:,-1]
 from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=1/3,random_state=0)
+X_train,X_test,Y_train,Y_test=train_test_split(x,y,test_size=0.2,random_state=0)
 from sklearn.linear_model import LinearRegression
-regressor = LinearRegression()
-regressor.fit(x_train,y_train)
-y_pred = regressor.predict(x_test)
-print(y_pred)
-print(y_test)
-#Graph plot for training data
-plt.scatter(x_train,y_train,color='black')
-plt.plot(x_train,regressor.predict(x_train),color='blue')
-plt.title("Hours vs Scores(Training set)")
-plt.xlabel("Hours")
-plt.ylabel("Scores")
-plt.show()
-#Graph plot for test data
-plt.scatter(x_test,y_test,color='black')
-plt.plot(x_train,regressor.predict(x_train),color='red')
-plt.title("Hours vs Scores(Testing set)")
-plt.xlabel("Hours")
-plt.ylabel("Scores")
-plt.show()
-mse=mean_absolute_error(y_test,y_pred)
-print('MSE = ',mse)
-mae=mean_absolute_error(y_test,y_pred)
-print('MAE = ',mae)
-rmse=np.sqrt(mse)
-print("RMSE= ",rmse)
+lr=LinearRegression()
+lr.fit(X_train,Y_train)
+X_train
+Y_train
+lr.predict(x_test.iloc[0].values.reshape(1,1))
+plt.scatter(df['X'],df['Y'])
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.plot(X_train,lr.predict(X_train),color='orange')
+lr.coef_
+lr.intercept_
+
 ```
-```
-```
+
 
 
 ## Output:
 
-Dataset
+![Screenshot 2024-05-07 155532](https://github.com/sreenithi23/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/147017600/94f67475-ed6a-447d-95aa-b0c54a16d0cf)
 
-![image](https://github.com/sreenithi23/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/147017600/446e2466-eb95-4b74-9015-bb71d6d7beb0)
+![Screenshot 2024-05-07 155550](https://github.com/sreenithi23/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/147017600/8c79e18d-dc8e-4f95-bb87-ad3d698f8aa8)
 
-Head Values
+![Screenshot 2024-05-07 155603](https://github.com/sreenithi23/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/147017600/c241a0eb-7ab2-48ce-abe0-127d87cbf75c)
 
-![image](https://github.com/sreenithi23/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/147017600/9e3c53e4-f79d-40ec-a193-52f759cc35a6)
+![Screenshot 2024-05-07 155615](https://github.com/sreenithi23/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/147017600/29c59d75-e42f-4d89-99fc-b29550c9330a)
 
-Tail Values
+![Screenshot 2024-05-07 155626](https://github.com/sreenithi23/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/147017600/2014935a-f326-4337-92e5-991f0672c05f)
 
-![image](https://github.com/sreenithi23/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/147017600/dfceb3b0-c8a7-4e08-ad3b-1bcba7f21c75)
+![Screenshot 2024-05-07 155632](https://github.com/sreenithi23/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/147017600/0f078bcc-878c-4335-a080-af6a12fc0b50)
 
-X and Y values
-
-![image](https://github.com/sreenithi23/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/147017600/a0a3d8fd-eda0-4f87-b813-724755724018)
-
-Predication values of X and Y
-
-![image](https://github.com/sreenithi23/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/147017600/acb280bc-ec83-424b-8419-d7b904615018)
-
-MSE,MAE and RMSE
-
-
-![image](https://github.com/sreenithi23/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/147017600/5abd9177-0286-49a0-a819-ee205d97f20c)
-
-Training Set
-
-![image](https://github.com/sreenithi23/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/147017600/eb4b763b-0024-4dc3-82e3-daf6c4896f38)
-
-Testing Set
-
-![image](https://github.com/sreenithi23/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/147017600/b1f34df7-e77d-457e-9862-4366a3568020)
 
 
 
